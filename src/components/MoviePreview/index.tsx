@@ -1,8 +1,9 @@
 import { Box } from '@mui/material';
 
-export function MoviePreview() {
-  const posterImage =
-    'https://i0.wp.com/picjumbo.com/wp-content/uploads/soft-smoke-abstract-background-free-posterImage.jpeg?w=600&quality=80';
+interface MoviePreviewProps {
+  posterPath?: string;
+}
+export function MoviePreview({ posterPath }: MoviePreviewProps) {
   return (
     <Box
       style={{
@@ -19,7 +20,7 @@ export function MoviePreview() {
     >
       <img
         style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-        src={posterImage}
+        src={posterPath}
         alt='poster'
       />
     </Box>

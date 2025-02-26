@@ -4,7 +4,7 @@ import { Box } from '@mui/material';
 import { MoviePreview } from '../MoviePreview';
 
 interface MovieAutocompleteProps {
-  options: { label: string; coverImage: string }[];
+  options: { label: string; coverImage: string; poster_path: string }[];
   label?: string;
   width?: string;
 }
@@ -15,6 +15,11 @@ export function MovieAutocomplete({
   width = '300px',
 }: MovieAutocompleteProps) {
   const [imageErrors, setImageErrors] = useState<Record<string, boolean>>({});
+  const [selectedMovie, setSelectedMovie] = useState<{
+    label: string;
+    coverImage: string;
+    poster_path: string;
+  } | null>(null);
 
   const handleImageError = (label: string) => {
     setImageErrors((prev) => ({ ...prev, [label]: true }));
@@ -29,11 +34,14 @@ export function MovieAutocomplete({
         flexDirection: 'column',
       }}
     >
-      <MoviePreview />
+      {selectedMovie && (
+        <MoviePreview posterPath={selectedMovie?.poster_path} />
+      )}
       <Autocomplete
         options={options}
         getOptionLabel={(option) => option.label}
         style={{ width }}
+        onChange={(_, newValue) => setSelectedMovie(newValue)}
         renderOption={(props, option) => (
           <Box component='li' {...props} display='flex' alignItems='center'>
             {!imageErrors[option.label] ? (
