@@ -13,7 +13,7 @@ export default function App() {
         justifyContent: 'center',
       }}
     >
-      <Box style={{ width: '100%', maxWidth: '1280px' }}>
+      <Box style={{ width: '100%' }}>
         <Header />
         <Movie />
       </Box>
