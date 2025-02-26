@@ -1,9 +1,18 @@
 import { useState } from 'react';
 import { Autocomplete, Avatar, TextField } from '@mui/material';
-import { fakeData } from './fakeData';
 import { Box } from '@mui/material';
 
-export function MovieInput() {
+interface MovieAutocompleteProps {
+  options: { label: string; coverImage: string }[];
+  label?: string;
+  width?: string;
+}
+
+export function MovieAutocomplete({
+  options,
+  label = 'Escolha um filme',
+  width = '300px',
+}: MovieAutocompleteProps) {
   const [imageErrors, setImageErrors] = useState<Record<string, boolean>>({});
 
   const handleImageError = (label: string) => {
@@ -12,9 +21,9 @@ export function MovieInput() {
 
   return (
     <Autocomplete
-      options={fakeData}
+      options={options}
       getOptionLabel={(option) => option.label}
-      style={{ width: '300px' }}
+      style={{ width }}
       renderOption={(props, option) => (
         <Box component='li' {...props} display='flex' alignItems='center'>
           {!imageErrors[option.label] ? (
@@ -28,15 +37,13 @@ export function MovieInput() {
             <Avatar
               src={option.coverImage}
               alt={option.label}
-              style={{ width: 40, marginRight: 8 }}
+              style={{ width: 40, height: 40, marginRight: 8 }}
             />
           )}
           {option.label}
         </Box>
       )}
-      renderInput={(params) => (
-        <TextField {...params} label='Escolha um filme' />
-      )}
+      renderInput={(params) => <TextField {...params} label={label} />}
     />
   );
 }
