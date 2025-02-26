@@ -1,6 +1,6 @@
 import { Box } from '@mui/material';
 import { Header } from './components/Header';
-import { Movie } from './components/Movie';
+import { SelectMovies } from './components/SelectMovies';
 
 export default function App() {
   return (
@@ -13,9 +13,9 @@ export default function App() {
         justifyContent: 'center',
       }}
     >
-      <Box style={{ width: '100%' }}>
+      <Box style={{ width: '100%', maxWidth: '1280px' }}>
         <Header />
-        <Movie />
+        <SelectMovies />
       </Box>
     </Box>
   );

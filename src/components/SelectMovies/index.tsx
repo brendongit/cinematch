@@ -4,7 +4,7 @@ import { fakeData } from '../MovieInput/fakeData';
 import { useEffect } from 'react';
 import { moviesApi } from '../../api/moviesApi';
 
-export function Movie() {
+export function SelectMovies() {
   useEffect(() => {
     function LoadMovies() {
       moviesApi
@@ -30,12 +30,13 @@ export function Movie() {
     <Box
       style={{
         background: '#919191',
-        height: '500px',
+        minHeight: '500px',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
         gap: '20px',
         width: '100%',
+        padding: '20px',
       }}
     >
       <MovieAutocomplete options={fakeData} />
