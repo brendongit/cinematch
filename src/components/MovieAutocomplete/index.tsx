@@ -34,9 +34,10 @@ export function MovieAutocomplete({
         flexDirection: 'column',
       }}
     >
-      {selectedMovie && (
-        <MoviePreview posterPath={selectedMovie?.poster_path} />
-      )}
+      <MoviePreview
+        selectedMovie={selectedMovie}
+        posterPath={selectedMovie?.poster_path}
+      />
       <Autocomplete
         options={options}
         getOptionLabel={(option) => option.label}
